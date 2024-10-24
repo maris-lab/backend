@@ -6,11 +6,15 @@ import javax.swing.*;
 
 public class TelaDeMenuView extends JFrame {
     public JMenu cadastroMenu;
+    public JMenu arquivoMenu;
 
     public JMenuItem novoItem;
     public JMenuItem pesquisarItem;
     public JMenuItem atualizarItem;
     public JMenuItem removerItem;
+
+    public JMenuItem sobrItem;
+    public JMenuItem sairItem;
 
     public JMenuBar barraDeMenu;
 
@@ -21,6 +25,7 @@ public class TelaDeMenuView extends JFrame {
 
         barraDeMenu = new JMenuBar();
 
+        arquivoMenu = new JMenu("arquivo");
         cadastroMenu = new JMenu("Cadastro");
 
         novoItem = new JMenuItem("Novo");
@@ -30,10 +35,17 @@ public class TelaDeMenuView extends JFrame {
 
         lblTelaDeMenu = new JLabel("Tela de Menu", SwingConstants.CENTER);
 
+        arquivoMenu.add(sobreItem);
+        arquivoMenu.add(sairItem);
+
         cadastroMenu.add(novoItem);
         cadastroMenu.add(pesquisarItem);
         cadastroMenu.add(atualizarItem);
         cadastroMenu.add(removerItem);
+
+        arquivoMenu.setMnemonic('A');
+        sobreItem.setMnemonic('S');
+        sairItem.setMnemonic('r');
 
         cadastroMenu.setMnemonic('C');
         novoItem.setMnemonic('N');
@@ -46,6 +58,24 @@ public class TelaDeMenuView extends JFrame {
         setJMenuBar(barraDeMenu);
 
         add(lblTelaDeMenu, BorderLayout.CENTER);
+
+        sobreItem.addActionListener(
+          new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+               JOptionPane.showMessageDialog(null,"sistema de cadastro Senac 2024");
+            }
+          }
+        );
+
+        sairItem.addActionListener(
+          new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+               System.exit(0);
+            }
+          }
+        );
 
         novoItem.addActionListener(
           new ActionListener() {
@@ -60,7 +90,7 @@ public class TelaDeMenuView extends JFrame {
           new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Voce clicou no item:" + event.getActionCommand());
+                TelaDeMenuController.abrirTelaDePesquisaView();
             }
           }
         );
@@ -69,7 +99,7 @@ public class TelaDeMenuView extends JFrame {
           new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Voce clicou no item:" + event.getActionCommand());
+                TelaDeMenuController.abrirTelaDeAtualizacaoView();
             }
           }
         );
@@ -78,13 +108,12 @@ public class TelaDeMenuView extends JFrame {
           new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null, "Voce clicou no item:" + event.getActionCommand());
+               TelaDeMenuController.abrirTelaDeRemoverView();
             }
           }
         );
 
         setSize(500, 500);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -92,6 +121,7 @@ public class TelaDeMenuView extends JFrame {
 
     public static void main(String[] args) {
         appTelaDeMenuView = new TelaDeMenuView();
+        appTelaDeMenuView.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }   
 
