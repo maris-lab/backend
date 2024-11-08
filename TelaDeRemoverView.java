@@ -118,7 +118,7 @@ public class TelaDeRemoverView extends JFrame {
     public static String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
     }
-
+     public static TelaDeRemoverView appTelaDeRemoverView;
     public static void main(String[] args) {
         TelaDeRemoverView appTelaDeRemoverView = new TelaDeRemoverView();
         appTelaDeRemoverView.setDefaultCloseOperation(EXIT_ON_CLOSE);
